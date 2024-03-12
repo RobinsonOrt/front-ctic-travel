@@ -1,0 +1,30 @@
+<main class="flex flex-col justify-center items-center w-full h-screen ">
+  <form class="flex flex-col justify-around w-4/12 h-[80%] p-4 rounded-xl shadow-lg mb-2" [formGroup]="destinationForm" (submit)="onSubmit()">
+    <h1 class="w-fit text-xl px-2 font-bold border-b-2 border-green3">Agregar destino</h1>
+    <div class="flex flex-col space-y-8">
+      <div class="">
+          <label class="itemLabel" for="destinationLocation">
+              Ubicación*
+          </label>
+          <input class="itemInput" formControlName="destinationLocation" id="destinationLocation" type="text" placeholder="Ubicación del destino">
+          <app-error-span [hidden]="destinationLocation.valid || destinationLocation.pristine" [error]="destinationLocation.errors"></app-error-span>
+      </div>
+      <div class="">
+          <label class="itemLabel" for="destinationAttractions">
+              Atracciones*
+          </label>
+          <input class="itemInput" formControlName="destinationAttractions" id="destinationAttractions" type="text" placeholder="Atracciones del sitio">
+          <app-error-span [hidden]="destinationAttractions.valid || destinationAttractions.pristine" [error]="destinationAttractions.errors"></app-error-span>
+      </div>
+    </div>
+    <app-button [disabled]="destinationForm.invalid" title="Guardar" />
+  </form>
+  @if (error){
+    <app-error-message [message]="message" />
+  }
+  
+  @if (success){
+    <app-success-message [message]="message" />
+  }
+</main>
+

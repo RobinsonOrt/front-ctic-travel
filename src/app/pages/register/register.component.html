@@ -1,0 +1,45 @@
+<main class="flex justify-center items-center w-full h-screen text-white">
+    <form class="flex flex-col justify-around w-4/12 p-4 rounded-xl shadow-lg bg-black bg-opacity-70 h-[90%]" [formGroup]="userForm" (submit)="onSubmit()">
+        <h1 class="w-fit text-xl px-2 font-bold border-b-2 border-green3">Registrate</h1>
+        <div class="flex flex-col space-y-8">
+            <div class="">
+                <label class="itemLabel" for="userName">
+                    Nombre(s)*
+                </label>
+                <input class="itemInput" formControlName="userName" id="userName" type="text" placeholder="Nombre">
+                <app-error-span [hidden]="userName.valid || userName.pristine" [error]="userName.errors"></app-error-span>
+            </div>
+            <div class="">
+                <label class="itemLabel" for="userLastName">
+                    Apellido(s)*
+                </label>
+                <input class="itemInput" formControlName="userLastName" id="userLastName" type="text" placeholder="Apellidos">
+                <app-error-span [hidden]="userLastName.valid || userLastName.pristine" [error]="userLastName.errors"></app-error-span>
+            </div>
+            <div class="">
+                <label class="itemLabel" for="userEmail">
+                    Correo electrónico*
+                </label>
+                <input class="itemInput" formControlName="userEmail" id="userEmail" type="email" placeholder="Email">
+                <app-error-span [hidden]="userEmail.valid || userEmail.pristine" [error]="userEmail.errors"></app-error-span>
+            </div>
+            <div class="">
+                <label class="itemLabel" for="userPassword">
+                    Contraseña*
+                </label>
+                <input class="itemInput" formControlName="userPassword" id="userPassword" type="password" placeholder="**************">
+                <span class="text-xs text-gray2">Mínimo 8 caracteres, una mayúscula, una minúscula y un número.</span>
+                <app-error-span [hidden]="userPassword.valid || userPassword.pristine" [error]="userPassword.errors"></app-error-span>
+            </div>
+            <a routerLink="/login" class="w-fit text-sm self-end text-gray2 hover:text-green3">¿Ya tienes tu cuenta? Inicia sesión</a>
+        </div>
+        @if (error){
+            <app-error-message [message]="message" />
+        }
+        
+        @if (success){
+            <app-success-message [message]="message" />
+        }
+        <app-button [disabled]="userForm.invalid" title="Registrarse" />
+    </form>
+</main>

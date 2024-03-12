@@ -1,0 +1,27 @@
+<main>
+    <div class="flex flex-row main w-full h-screen justify-around items-center text-white">
+        <div class="flex flex-col h-3/5 w-2/5 justify-around">
+            <h1 class="flex flex-col font-bold">
+                <span class="text-8xl drop-shadow-[2px_2px_4px_#000000]">CTIC</span>
+                <div class="content text-9xl">
+                    <span class="company-second-span">TRAVEL</span>
+                    <span class="company-second-span">TRAVEL</span>
+                </div>
+            </h1>
+            <button class="w-2/6 py-2 text-xl font-bold rounded-xl border-2 border-white bg-transparent drop-shadow-[2px_2px_4px_#000000] hover:bg-white hover:shadow-[2px_2px_40px_#00c10042] hover:text-black hover:scale-110 transition-all duration-300" (click)="scrollToPItem()">Conócenos</button>
+        </div>
+        <div class="flex h-full w-2/5 text-justify text-2xl items-end leading-10">
+            <p class="drop-shadow-[2px_2px_4px_#00c100b1]">Bienvenido! Preparate para vivir una experiencia inolvidable, conoce los mejores destinos turisticos del mundo.</p>
+        </div>
+    </div>
+    <div class="flex flex-row justify-around w-full py-4" id="know-us">
+        <div class="w-2/5 flex flex-col items-center p-2 space-y-4">
+            <span class="text-xl">Registrate y descubre nuestros planes</span>
+            <app-link title="Registrate" link="/registro" />
+        </div>
+        <div class="w-2/5 flex flex-col items-center p-2 space-y-4">
+            <span class="text-xl">O si ya tienes una cuenta, inicia sesión</span>
+            <app-link title="Iniciar Sesión" link="/login" />
+        </div>
+    </div>
+</main>

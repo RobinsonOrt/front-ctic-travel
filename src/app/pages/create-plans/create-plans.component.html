@@ -1,0 +1,55 @@
+<main class="flex flex-col justify-center items-center w-full min-h-screen ">
+    <form class="flex flex-col justify-around w-4/12 h-[80%] p-4 rounded-xl shadow-lg mb-2 space-y-6" [formGroup]="planForm" (submit)="onSubmit()">
+      <h1 class="w-fit text-xl px-2 font-bold border-b-2 border-green3">Agregar Hospedaje</h1>
+      <div class="flex flex-col space-y-6">
+        <div class="">
+            <label class="itemLabel" for="planName">
+                Nombre*
+            </label>
+            <input class="itemInput" formControlName="planName" id="planName" type="text" placeholder="Nombre del plan">
+            <app-error-span [hidden]="planName.valid || planName.pristine" [error]="planName.errors"></app-error-span>
+        </div>
+        <div class="">
+            <label class="itemLabel" for="planPrice">
+                Precio*
+            </label>
+            <input class="itemInput" formControlName="planPrice" id="planPrice" type="number" placeholder="Precio del plan">
+            <app-error-span [hidden]="planPrice.valid || planPrice.pristine" [error]="planPrice.errors"></app-error-span>
+        </div>
+        <div class="">
+            <label class="itemLabel" for="planDuration">
+                Duración*
+            </label>
+            <input class="itemInput" formControlName="planDuration" id="planDuration" type="text" placeholder="Duración días y noches">
+            <app-error-span [hidden]="planDuration.valid || planDuration.pristine" [error]="planDuration.errors"></app-error-span>
+        </div>
+        <div class="">
+            <label class="itemLabel" for="planMaxPeople">
+                Máximo de cupos*
+            </label>
+            <input class="itemInput" formControlName="planMaxPeople" id="planMaxPeople" type="number" placeholder="Cupos disponibles">
+            <app-error-span [hidden]="planMaxPeople.valid || planMaxPeople.pristine" [error]="planMaxPeople.errors"></app-error-span>
+        </div>
+        <div class="">
+            <label class="itemLabel" for="planTransportationTypeId">
+                Tipo de transporte*
+            </label>
+            <select class="itemInput" name="planTransportationTypeId" id="planTransportationTypeId" formControlName="planTransportationTypeId">
+                <option value="1">Aereo</option>
+                <option value="2">Terrestre</option>
+            </select>
+            <app-error-span [hidden]="planTransportationTypeId.valid || planTransportationTypeId.pristine" [error]="planTransportationTypeId.errors"></app-error-span>
+        </div>
+      </div>
+      <app-button [disabled]="planForm.invalid" title="Guardar" />
+    </form>
+    @if (error){
+      <app-error-message [message]="message" />
+    }
+    
+    @if (success){
+      <app-success-message [message]="message" />
+    }
+  </main>
+  
+  

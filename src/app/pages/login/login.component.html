@@ -1,0 +1,26 @@
+<main class="flex justify-center items-center w-full h-screen text-white">
+    <form class="flex flex-col justify-around w-4/12 h-[70%] p-4 rounded-xl shadow-lg bg-black bg-opacity-70" [formGroup]="userForm" (submit)="onSubmit()">
+        <h1 class="w-fit text-xl px-2 font-bold border-b-2 border-green3">Iniciar sesión</h1>
+        <div class="flex flex-col space-y-8">
+            <div class="">
+                <label class="itemLabel" for="userEmail">
+                    Correo electrónico*
+                </label>
+                <input class="itemInput" formControlName="userEmail" id="userEmail" type="email" placeholder="Email">
+                <app-error-span [hidden]="userEmail.valid || userEmail.pristine" [error]="userEmail.errors"></app-error-span>
+            </div>
+            <div class="">
+                <label class="itemLabel" for="userPassword">
+                    Contraseña*
+                </label>
+                <input class="itemInput" formControlName="userPassword" id="userPassword" type="password" placeholder="**************">
+                <app-error-span [hidden]="userPassword.valid || userPassword.pristine" [error]="userPassword.errors"></app-error-span>
+            </div>
+            <a routerLink="/registro" class="w-fit text-sm self-end text-gray2 hover:text-green3">¿No tienes cuenta? registrate ahora</a>
+        </div>
+        @if (error){
+            <app-error-message [message]="message" />
+        }
+        <app-button [disabled]="userForm.invalid" title="Iniciar Sesión" />
+    </form>
+</main>

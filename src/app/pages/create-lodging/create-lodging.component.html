@@ -1,0 +1,58 @@
+<main class="flex flex-col justify-center items-center w-full min-h-screen ">
+    <form class="flex flex-col justify-around w-4/12 h-[80%] p-4 rounded-xl shadow-lg mb-2 space-y-6" [formGroup]="lodgingForm" (submit)="onSubmit()">
+      <h1 class="w-fit text-xl px-2 font-bold border-b-2 border-green3">Agregar Hospedaje</h1>
+      <div class="flex flex-col space-y-6">
+        <div class="">
+            <label class="itemLabel" for="lodgingName">
+                Nombre*
+            </label>
+            <input class="itemInput" formControlName="lodgingName" id="lodgingName" type="text" placeholder="Nombre del hospedaje">
+            <app-error-span [hidden]="lodgingName.valid || lodgingName.pristine" [error]="lodgingName.errors"></app-error-span>
+        </div>
+        <div class="">
+            <label class="itemLabel" for="lodgingRooms">
+                Habitaciones*
+            </label>
+            <input class="itemInput" formControlName="lodgingRooms" id="lodgingRooms" type="number" placeholder="Cantidad de habitaciones" max="99">
+            <app-error-span [hidden]="lodgingRooms.valid || lodgingRooms.pristine" [error]="lodgingRooms.errors"></app-error-span>
+        </div>
+        <div class="">
+            <label class="itemLabel" for="lodgingCheckIn">
+                CheckIn*
+            </label>
+            <input class="itemInput" formControlName="lodgingCheckIn" id="lodgingCheckIn" type="time">
+            <app-error-span [hidden]="lodgingCheckIn.valid || lodgingCheckIn.pristine" [error]="lodgingCheckIn.errors"></app-error-span>
+        </div>
+        <div class="">
+            <label class="itemLabel" for="lodgingCheckOut">
+                CheckOut*
+            </label>
+            <input class="itemInput" formControlName="lodgingCheckOut" id="lodgingCheckOut" type="time">
+            <app-error-span [hidden]="lodgingCheckOut.valid || lodgingCheckOut.pristine" [error]="lodgingCheckOut.errors"></app-error-span>
+        </div>
+        <div class="">
+            <label class="itemLabel" for="lodgingTypeId">
+                Tipo de hospedaje*
+            </label>
+            <select class="itemInput" name="lodgingTypeId" id="lodgingTypeId" formControlName="lodgingTypeId">
+                <option value="1">Hotel</option>
+                <option value="2">Hospedaje</option>
+                <option value="3">Residencia</option>
+                <option value="4">Apartamento</option>
+                <option value="5">Habitación</option>
+            </select>
+            <app-error-span [hidden]="lodgingCheckOut.valid || lodgingCheckOut.pristine" [error]="lodgingCheckOut.errors"></app-error-span>
+        </div>
+      </div>
+      <app-button [disabled]="lodgingForm.invalid" title="Guardar" />
+    </form>
+    @if (error){
+      <app-error-message [message]="message" />
+    }
+    
+    @if (success){
+      <app-success-message [message]="message" />
+    }
+  </main>
+  
+  

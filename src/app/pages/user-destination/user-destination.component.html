@@ -1,0 +1,35 @@
+<main class="flex justify-center items-center min-h-screen w-full ">
+    <div class="flex flex-col items-center justify-around w-[70%] shadow-xl min-h-[80%] p-4 space-y-8">
+        @if (!error) {
+            <h1 class="text-center font-bold text-2xl">{{ destination.destinationLocation }}</h1>
+            <div class="w-full">
+                <h2 class="font-bold text-lg">Atracciones</h2>
+                <p class="text-justify">{{ destination.destinationAttractions }}</p>
+            </div>
+            @if (lodgingsLength > 0) {
+                <h2 class="font-bold text-lg">Hospedajes</h2>
+                <div class="w-full grid grid-cols-4 gap-4">
+                    <ng-container *ngFor="let lodging of lodgings">
+                        <div class="flex flex-col w-full shadow-md p-4 rounded-xl">
+                            <span class="text-center font-semibold">{{ lodging.lodgingName }}</span>
+                            <span class="text-sm text-center border-b">{{ lodging.lodgingType.lodgingTypeName }}</span>
+                            <div class="flex flex-col space-y-2">
+                                <span class="text-sm">{{ lodging.lodgingRooms }} habitaciones</span>
+                                <span class="text-sm">Checkin {{ lodging.lodgingCheckIn.toString().substring(0,5) }}</span>
+                                <span class="text-sm">Checkout {{ lodging.lodgingCheckOut.toString().substring(0,5) }}</span>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            }@else {
+                <h2 class="font-bold text-lg">Hospedajes</h2>
+                <span class="text-center">No hay hospedajes disponibles</span>
+            }
+            <a class="w-fit border-2 border-green2 px-4 py-2 rounded-2xl hover:bg-green2 hover:scale-105 transition-all duration-300" routerLink="/destinos/planes/{{ destinationTag }}">Ver planes</a>
+        }
+        @if (error) {
+            <h1 class="text-center font-bold text-2xl">VER DESTINO</h1>
+            <span class="text-red-500 text-center">{{ message }}</span>
+        }
+    </div>
+</main>

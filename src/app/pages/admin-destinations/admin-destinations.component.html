@@ -1,0 +1,28 @@
+<div class="flex flex-col container justify-around h-screen mx-auto py-4">
+    <div class="flex flex-col justify-center w-full">
+        <h1 class="text-2xl font-bold mb-4 mx-auto">DESTINOS</h1>
+        <a href="/destinos/agregar" class="text-blue-500 w-fit border-b-2 px-4 mx-auto my-4">Agregar destino</a>
+    </div>
+    @if (!error) {
+        <div class="grid grid-cols-3 gap-4 mx-4 mt-4">
+            <ng-container *ngFor="let destination of response">
+                <div class="bg-white rounded-lg shadow-md p-4 space-y-8">
+                    <h2 class="text-xl font-bold mb-2">{{destination.destinationLocation}}</h2>
+                    <p>{{destination.destinationAttractions}}</p>
+                    <div class="flex flex-row justify-around">
+                        <a routerLink="/destinos/hospedajes/{{destination.destinationTag}}" class="w-fit border-2 border-blue-600 px-4 py-2 rounded-2xl hover:bg-blue-600 hover:scale-105 hover:text-white transition-all duration-300">Hospedajes</a>
+                        <a routerLink="/destinos/planes/{{destination.destinationTag}}" class="w-fit border-2 border-green-600 px-4 py-2 rounded-2xl hover:bg-green-600 hover:scale-105 hover:text-white transition-all duration-300">Planes</a>
+                        <button class="w-fit border-2 border-red-600 px-4 py-2 rounded-2xl hover:bg-red-600 hover:scale-105 hover:text-white transition-all duration-300" (click)="deleteDestination(destination.destinationId)">Eliminar</button>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    }
+    @if (error || localError) {
+        <app-error-message [message]="message" />
+    }
+    @if (success){
+        <app-success-message [message]="message" />
+    }
+    <app-pagination (pageChange)="pageChange($event)" [page]="page" [totalPages]="maxPage" />
+</div>

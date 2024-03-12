@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    --color-black: #000;
+    --color-white: #fff;
+    --color-gray: #c4c4c4;
+    --color-green: #00c10042;
+    --color-green-light: #00c100b1;
+}
+
+body{
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.itemLabel{
+    @apply block text-sm font-bold mb-2;
+}
+
+.itemInput{
+    @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none;
+}

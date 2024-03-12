@@ -1,0 +1,28 @@
+<div class="flex flex-col container mx-auto py-4">
+    <h1 class="text-2xl font-bold mb-4 mx-auto">HOSPEDAJES</h1>
+    <a [routerLink]="'/destinos/hospedajes/agregar/'+ destination.destinationId" class="text-blue-500 w-fit border-b-2 px-4 mx-auto my-4">Agregar Hospedaje</a>
+    @if (!error) {
+
+    <div class="grid grid-cols-3 gap-4 mx-4 mt-4">
+        <ng-container *ngFor="let lodging of lodgings">
+            <div class="bg-white shadow-md rounded-lg p-4">
+                <h2 class="text-xl font-bold">{{lodging.lodgingName}}</h2>
+                <p class="text-gray-500">Tipo: {{lodging.lodgingType.lodgingTypeName}}</p>
+                <p class="text-gray-500">Habitaciones: {{lodging.lodgingRooms}}</p>
+                <p class="text-gray-500">Check-in: {{lodging.lodgingCheckIn.toString().substring(0,5)}}</p>
+                <p class="text-gray-500">Check-out: {{lodging.lodgingCheckOut.toString().substring(0,5)}}</p>
+                <div class="flex flex-row justify-around">
+                    <button class="w-fit border-2 border-red-600 px-4 py-2 rounded-2xl hover:bg-red-600 hover:scale-105 hover:text-white transition-all duration-300" (click)="deleteLodging(lodging.lodgingId)">Eliminar</button>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+}
+</div>
+
+@if (error || localError) {
+    <app-error-message [message]="message" />
+}
+@if (success){
+    <app-success-message [message]="message" />
+}

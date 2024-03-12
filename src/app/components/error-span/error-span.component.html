@@ -1,0 +1,7 @@
+<div class="text-red-500 text-xs font-semibold mt-1" [hidden]="hidden">
+    <span *ngIf="error?.['required']">Este campo es requerido</span>
+    <span *ngIf="error?.['email']">El correo electrónico no es válido</span>
+    <span *ngIf="error?.['maxlength']">El campo no puede tener más de {{error?.['maxlength'].requiredLength}} caracteres</span>
+    <span *ngIf="error?.['max']">El valor no puede ser mayor a {{error?.['max'].max}}</span>
+    <span *ngIf="error?.['pattern']">El campo no cumple con el patrón requerido</span>
+</div>

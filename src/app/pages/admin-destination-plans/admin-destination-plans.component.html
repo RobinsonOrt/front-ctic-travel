@@ -1,0 +1,37 @@
+<div class="flex flex-col h-screen container mx-auto py-4">
+    <h1 class="text-2xl font-bold my-8 mx-auto">CONFIGURACION DE PLANES EN EL DESTINO</h1>
+    @if (!error) {
+        <div class="flex h-full justify-around">
+            <div class="flex flex-col w-1/4 items-center">
+                <h2>Planes para agregar</h2>
+                <div class="flex flex-col w-full h-96 border-2 rounded-xl border-green2 overflow-y-auto">
+                    @if (errorToDestination) {
+                        <p class="text-center text-gray-400">{{ messageToDestination }}</p>
+                    } @else{
+                        @for (plan of plansToDestination; track $index) {
+                            <button title="Asignar al destino" (click)="addPlanToDestination(plan.planTag)" class="py-2 border-b border-gray2 first:rounded-t-xl hover:bg-green2 transition-all duration-500 odd:bg-gray-400 even:bg-gray-100">{{ plan.planName }}</button>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="flex flex-col w-1/4 items-center">
+                <h2>Planes existentes en el destino</h2>
+                <div class="flex flex-col w-full h-96 border-2 rounded-xl border-red-300 overflow-y-auto">
+                    @if (errorByDestination) {
+                        <p class="text-center text-gray-400">{{ messageByDestination }}</p>
+                    } @else{
+                        @for (plan of plansByDestination; track $index) {
+                            <button title="Quitar del destino" (click)="removePlanFromDestination(plan.planTag)" class="py-2 border-b border-gray2 first:rounded-t-xl hover:bg-red-300 transition-all duration-500 odd:bg-gray-400 even:bg-gray-100">{{ plan.planName }}</button>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    }
+    @if (error || localError) {
+        <app-error-message [message]="localMessage" />
+    }
+    @if (success){
+        <app-success-message [message]="localMessage" />
+    }
+</div>
